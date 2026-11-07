@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memoria Embrujada</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Pantalla de inicio -->
+  <section id="portada" class="portada" aria-label="Pantalla de inicio">
+    <div class="portada-texto">
+      <h1>Memoria Embrujada</h1>
+      <p>Encuentra los pares... y cuidado con las telarañas.</p>
+      <button id="iniciar" type="button">Iniciar a jugar</button>
+    </div>
+  </section>
+
+  <!-- Música: poner y quitar -->
+  <button id="botonMusica" class="boton-musica" type="button" title="Poner música (M)" aria-label="Poner música">🔇</button>
+  <audio id="musica" src="audio/musica.mp3" loop preload="auto"></audio>
+
+  <main>
+    <h1>Memoria Embrujada</h1>
+
+    <section class="jugadoras">
+      <article class="panel" id="panel0">
+        <input id="nombre0" value="Jugador 1" maxlength="14" aria-label="Nombre del jugador 1">
+        <div class="puntos"><span id="puntos0">0</span><small>pares</small></div>
+        <div class="estado" id="estado0"></div>
+      </article>
+      <article class="panel" id="panel1">
+        <input id="nombre1" value="Jugador 2" maxlength="14" aria-label="Nombre del jugador 2">
+        <div class="puntos"><span id="puntos1">0</span><small>pares</small></div>
+        <div class="estado" id="estado1"></div>
+      </article>
+    </section>
+
+    <div class="info">
+      <strong id="turno"></strong>
+      <span id="mezcla"></span>
+    </div>
+
+    <div class="accion">
+      <p id="mensaje" aria-live="polite"></p>
+      <div class="botones">
+        <button id="siguiente" type="button" title="Atajo: N">Siguiente turno</button>
+        <button id="reiniciar" type="button" title="Atajo: R">Nueva partida</button>
+      </div>
+    </div>
+
+    <section id="tablero" aria-label="Tablero de cartas"></section>
+
+    <!-- Reglas del juego, debajo del tablero -->
+    <section class="reglas" aria-label="Reglas del juego">
+      <h2>Reglas del juego</h2>
+      <ul>
+        <li><strong>Tu turno:</strong> voltea dos cartas. Si son iguales, ganas el par y sigues jugando.</li>
+        <li><strong>Si fallas:</strong> pulsa "Siguiente turno" (o la tecla N) y le toca al otro jugador.</li>
+        <li><strong>Mezcla:</strong> cada 4 pares encontrados, dos cartas boca abajo cambian de lugar.</li>
+        <li><strong>Telaraña:</strong> Hay 2. Si volteas una no sumas, tu turno termina, pierdes tu próximo turno.</li>
+        <li><strong>Ganar:</strong> Hay 13 pares. Gana quien tenga más; con 7 la victoria ya está asegurada.</li>
+        <li><strong>Atajos:</strong> N siguiente turno, R nueva partida, M música.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Mensaje de victoria (aparece encima al terminar) -->
+  <div id="victoria" class="victoria oculta" role="dialog" aria-live="assertive">
+    <div class="victoria-caja">
+      <div class="victoria-emoji" aria-hidden="true">🏆</div>
+      <h2 id="victoriaTitulo"></h2>
+      <p id="victoriaTexto"></p>
+      <div class="botones">
+        <button id="otraPartida" type="button">Nueva partida</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aquí cae el confeti -->
+  <div id="confeti" aria-hidden="true"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
